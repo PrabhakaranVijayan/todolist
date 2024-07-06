@@ -2,6 +2,7 @@
 let button= document.getElementById("btn")
 let ini = document.getElementById("todo")
 let todos=[]
+// localStorage.setItem(todos)
 button.addEventListener("click",()=>{
     displaytodo()
     ini.value=''
@@ -23,18 +24,27 @@ function displaytodo(){
     let container= document.getElementById("todoItems")
     
     createlist.setAttribute("id",todos.length-1)
+    createlist.setAttribute("class","mytasks")
+    createlist.setAttribute("class","mb-3")
     let span= document.createElement("span")
     let add= document.createTextNode(ini.value)
     span.appendChild(add)
-    span.style.fontSize="25px"
     let close= document.createElement("span")
     close.setAttribute("id",todos.length-1)
-    close.style.fontSize="25px"
-    close.style.fontWeight="bold"
-    let x= document.createTextNode("X")
-    close.appendChild(x)
+     
+    let x= document.createElement("div")
+    x.style.display="flex"
+    x.style.justifyContent="space-between"
+    let edit= document.createElement("img")
+    edit.setAttribute("src","edit-solid-24.png")
+    let y= document.createElement("img")
+    y.setAttribute("src","trash-regular-24.png")
+    close.appendChild(y)
+    x.appendChild(edit)
+    x.appendChild(close)
     createlist.appendChild(span)
-    createlist.appendChild(close)
+    createlist.appendChild(x)
+    createlist.style.borderStyle="groove"
     container.appendChild(createlist)
     console.log(todos)
     span.addEventListener("click",complete)
@@ -51,6 +61,9 @@ function displaytodo(){
     }
     function remove(){
         container.removeChild(createlist)
+    }
+    function edittodo(){
+
     }
     
 
